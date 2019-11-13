@@ -27,4 +27,5 @@ Route::group(['namespace' => 'Api'], function () {
 
 Route::group(['middleware' => ['auth:api'], 'namespace' => 'Api'], function () {
     Route::apiResource('files', 'FileController');
+    Route::get('/generate/{idFile}', 'LinkController@generate');
 });

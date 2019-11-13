@@ -1,0 +1,49 @@
++--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+--------------+
+| Domain | Method    | URI                                     | Name                              | Action                                                                    | Middleware   |
++--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+--------------+
+|        | GET|HEAD  | /                                       | dashboard                         | App\Http\Controllers\DashboardController@index                            | web,auth     |
+|        | POST      | api/files                               | files.store                       | App\Http\Controllers\Api\FileController@store                             | api,auth:api |
+|        | GET|HEAD  | api/files                               | files.index                       | App\Http\Controllers\Api\FileController@index                             | api,auth:api |
+|        | PUT|PATCH | api/files/{file}                        | files.update                      | App\Http\Controllers\Api\FileController@update                            | api,auth:api |
+|        | DELETE    | api/files/{file}                        | files.destroy                     | App\Http\Controllers\Api\FileController@destroy                           | api,auth:api |
+|        | GET|HEAD  | api/files/{file}                        | files.show                        | App\Http\Controllers\Api\FileController@show                              | api,auth:api |
+|        | POST      | api/login                               |                                   | App\Http\Controllers\Api\Auth\LoginController                             | api          |
+|        | POST      | api/logout                              |                                   | App\Http\Controllers\Api\Auth\LogoutController                            | api,auth:api |
+|        | POST      | api/register                            |                                   | App\Http\Controllers\Api\Auth\RegisterController                          | api          |
+|        | GET|HEAD  | api/user                                |                                   | Closure                                                                   | api,auth:api |
+|        | POST      | files                                   | files.store                       | App\Http\Controllers\FileController@store                                 | web,auth     |
+|        | GET|HEAD  | files                                   | files.index                       | App\Http\Controllers\FileController@index                                 | web,auth     |
+|        | GET|HEAD  | files/create                            | files.create                      | App\Http\Controllers\FileController@create                                | web,auth     |
+|        | DELETE    | files/{file}                            | files.destroy                     | App\Http\Controllers\FileController@destroy                               | web,auth     |
+|        | PUT|PATCH | files/{file}                            | files.update                      | App\Http\Controllers\FileController@update                                | web,auth     |
+|        | GET|HEAD  | files/{file}                            | files.show                        | App\Http\Controllers\FileController@show                                  | web,auth     |
+|        | GET|HEAD  | generate/{idFile}                       | link.generate                     | App\Http\Controllers\LinkController@generate                              | web,auth     |
+|        | POST      | login                                   |                                   | App\Http\Controllers\Auth\LoginController@login                           | web,guest    |
+|        | GET|HEAD  | login                                   | login                             | App\Http\Controllers\Auth\LoginController@showLoginForm                   | web,guest    |
+|        | POST      | logout                                  | logout                            | App\Http\Controllers\Auth\LoginController@logout                          | web          |
+|        | GET|HEAD  | oauth/authorize                         | passport.authorizations.authorize | Laravel\Passport\Http\Controllers\AuthorizationController@authorize       | web,auth     |
+|        | DELETE    | oauth/authorize                         | passport.authorizations.deny      | Laravel\Passport\Http\Controllers\DenyAuthorizationController@deny        | web,auth     |
+|        | POST      | oauth/authorize                         | passport.authorizations.approve   | Laravel\Passport\Http\Controllers\ApproveAuthorizationController@approve  | web,auth     |
+|        | GET|HEAD  | oauth/clients                           | passport.clients.index            | Laravel\Passport\Http\Controllers\ClientController@forUser                | web,auth     |
+|        | POST      | oauth/clients                           | passport.clients.store            | Laravel\Passport\Http\Controllers\ClientController@store                  | web,auth     |
+|        | DELETE    | oauth/clients/{client_id}               | passport.clients.destroy          | Laravel\Passport\Http\Controllers\ClientController@destroy                | web,auth     |
+|        | PUT       | oauth/clients/{client_id}               | passport.clients.update           | Laravel\Passport\Http\Controllers\ClientController@update                 | web,auth     |
+|        | POST      | oauth/personal-access-tokens            | passport.personal.tokens.store    | Laravel\Passport\Http\Controllers\PersonalAccessTokenController@store     | web,auth     |
+|        | GET|HEAD  | oauth/personal-access-tokens            | passport.personal.tokens.index    | Laravel\Passport\Http\Controllers\PersonalAccessTokenController@forUser   | web,auth     |
+|        | DELETE    | oauth/personal-access-tokens/{token_id} | passport.personal.tokens.destroy  | Laravel\Passport\Http\Controllers\PersonalAccessTokenController@destroy   | web,auth     |
+|        | GET|HEAD  | oauth/scopes                            | passport.scopes.index             | Laravel\Passport\Http\Controllers\ScopeController@all                     | web,auth     |
+|        | POST      | oauth/token                             | passport.token                    | Laravel\Passport\Http\Controllers\AccessTokenController@issueToken        | throttle     |
+|        | POST      | oauth/token/refresh                     | passport.token.refresh            | Laravel\Passport\Http\Controllers\TransientTokenController@refresh        | web,auth     |
+|        | GET|HEAD  | oauth/tokens                            | passport.tokens.index             | Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController@forUser | web,auth     |
+|        | DELETE    | oauth/tokens/{token_id}                 | passport.tokens.destroy           | Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController@destroy | web,auth     |
+|        | GET|HEAD  | password/confirm                        | password.confirm                  | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm       | web,auth     |
+|        | POST      | password/confirm                        |                                   | App\Http\Controllers\Auth\ConfirmPasswordController@confirm               | web,auth     |
+|        | POST      | password/email                          | password.email                    | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail     | web          |
+|        | GET|HEAD  | password/reset                          | password.request                  | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm    | web          |
+|        | POST      | password/reset                          | password.update                   | App\Http\Controllers\Auth\ResetPasswordController@reset                   | web          |
+|        | GET|HEAD  | password/reset/{token}                  | password.reset                    | App\Http\Controllers\Auth\ResetPasswordController@showResetForm           | web          |
+|        | POST      | register                                |                                   | App\Http\Controllers\Auth\RegisterController@register                     | web,guest    |
+|        | GET|HEAD  | register                                | register                          | App\Http\Controllers\Auth\RegisterController@showRegistrationForm         | web,guest    |
+|        | GET|HEAD  | show-one-time/{token}                   | link.show                         | App\Http\Controllers\LinkController@show                                  | web          |
+|        | GET|HEAD  | show/{id}                               | public.show                       | App\Http\Controllers\ShowImageController@show                             | web          |
++--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+--------------+

@@ -27,8 +27,9 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FileRequest $request)
     {
+//        return response()->json($request);
         if ($request->hasFile('file')) {
             $path = $request->file('file')->store('uploads','public');
         }
@@ -41,7 +42,7 @@ class FileController extends Controller
         ]);
 
         if ($item) {
-            return response()->json($item->id, 200);
+            return response()->json($item->id, 201);
         } else {
             return back()
                 ->withErrors(['msg' => 'Помилка пр збереженні.'])
@@ -70,7 +71,12 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file = File::where('id', $id)->first();
+        $item = $file->update([
+            'url' => route('public.show', $file->id)
+        ]);
+        return response()->json($file->url, 200);
+
     }
 
     /**
