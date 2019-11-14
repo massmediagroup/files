@@ -17,7 +17,7 @@ class CreateFilesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('path');
-            $table->text('comments')->nullable();
+            $table->text('comment')->nullable();
             $table->string('url')->nullable();
             $table->date('delete_after');
             $table->integer('view_count')->default(0);

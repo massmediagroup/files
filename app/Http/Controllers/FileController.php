@@ -14,7 +14,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        //
+        dd(File::all());
     }
 
     /**
@@ -24,7 +24,7 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        return view('files.create');
     }
 
     /**
@@ -35,9 +35,19 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->storeAs('', $request->file('file')->getClientOriginalName(), 'public');
+        }
+        File::create([
+            'name' => $request->file('file')->getClientOriginalName(),
+            'comment' => $request->input('comment'),
+            'path' => $path,
+            'delete_after' => $request->input('delete_after'),
+            'user_id' => \Auth::user()->id,
+        ]);
 
+        return redirect()->route('files.index');
+    }
     /**
      * Display the specified resource.
      *
