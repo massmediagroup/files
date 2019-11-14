@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\File;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FileRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class FileController extends Controller
@@ -27,7 +29,24 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->store('uploads','public');
+        }
+        $item = File::create([
+            'name' => $request->file('file')->getClientOriginalName(),
+            'comment' => $request->input('comment'),
+            'path' => $path,
+            'delete_after' => $request->input('delete_after'),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        if ($item) {
+            return response()->json($item->id, 200);
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Помилка пр збереженні.'])
+                ->withInput();
+        }
     }
 
     /**
