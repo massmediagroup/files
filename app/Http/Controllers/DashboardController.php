@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\File;
+use App\Link;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,6 +13,7 @@ class DashboardController extends Controller
         $countView = File::all()->sum('view_count');
         $countFiles = File::all()->count();
         $countDelete = File::onlyTrashed()->count();
-        return view('dashboard', compact('countFiles', 'countDelete', 'countView'));
+        $countOneTimeLinks = Link::all()->count();
+        return view('dashboard', compact('countFiles', 'countDelete', 'countView', 'countOneTimeLinks'));
     }
 }

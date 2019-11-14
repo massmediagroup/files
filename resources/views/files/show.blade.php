@@ -30,5 +30,21 @@
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                Одноразові силки
+            </div>
+            <div class="card-body">
+                <a href="{{ route('link.generate', ['idFile' => $file->id]) }}" class="btn btn-success">Генерувати одноразову силку</a>
+                <ul>
+                    @forelse($file->links as $link)
+                        <li>{{ $link->url }}</li>
+                    @empty
+                        <li>Поки що не має силок</li>
+                    @endforelse
+                </ul>
+            </div>
+        </div>
+
     </div>
 @endsection

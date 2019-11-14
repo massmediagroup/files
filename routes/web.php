@@ -15,8 +15,10 @@
 Auth::routes();
 
 Route::get('/show/{id}', 'ShowImageController@show')->name('public.show');
+Route::get('/show-one-time/{token}', 'LinkController@show')->name('link.show');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('files', 'FileController')->except(['edit'])->names('files');
     Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('/generate/{idFile}', 'LinkController@generate')->name('link.generate');
 });
