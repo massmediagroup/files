@@ -104,6 +104,7 @@ class FileController extends Controller
     public function destroy(File $file)
     {
         \Storage::disk('public')->delete($file->path);
+        $file->links()->delete();
         $file->delete();
         return redirect()->route('files.index');
     }
