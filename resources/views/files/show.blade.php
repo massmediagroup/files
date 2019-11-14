@@ -11,7 +11,16 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $file->name }}</h5>
                         <p class="card-text">{{ $file->comment ?? '' }}</p>
-                        <p class="card-text"><small class="text-muted">Дата видалення: {{ $file->delete_after ?? '' }}</small></p>
+                        <p class="card-text"><small class="text-muted">Дата
+                                видалення: {{ $file->delete_after ?? '' }}</small></p>
+                        <p class="card-text">
+                            <input type="text" disabled value="{{ $file->url ?? '' }}">
+                            <form action="{{ route('files.update', $file) }}" method="post">
+                                @csrf
+                                @method('patch')
+                                <button type="submit" class="btn btn-info">Генерувати посилання</button>
+                            </form>
+                        </p>
                         <form action="{{ route('files.destroy', $file) }}" method="post">
                             @csrf
                             @method('delete')

@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/show/{id}', 'ShowImageController@show')->name('public.show');
+
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('files', 'FileController')->except(['edit', 'update'])->names('files');
+    Route::resource('files', 'FileController')->except(['edit'])->names('files');
 });

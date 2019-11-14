@@ -82,7 +82,10 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-        //
+        $file->update([
+            'url' => route('public.show', $file->id)
+        ]);
+        return redirect()->route('files.show', $file);
     }
 
     /**

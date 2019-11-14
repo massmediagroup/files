@@ -29,6 +29,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen('FileHasViewed', function ($post) {
+            $post->increment('view_count');
+        });
     }
 }
