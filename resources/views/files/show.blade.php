@@ -12,7 +12,11 @@
                         <h5 class="card-title">{{ $file->name }}</h5>
                         <p class="card-text">{{ $file->comment ?? '' }}</p>
                         <p class="card-text"><small class="text-muted">Дата видалення: {{ $file->delete_after ?? '' }}</small></p>
-                        <a href="{{ route('files.destroy', $file) }}" class="btn btn-danger">Видалити</a>
+                        <form action="{{ route('files.destroy', $file) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">Видалити</button>
+                        </form>
                     </div>
                 </div>
             </div>

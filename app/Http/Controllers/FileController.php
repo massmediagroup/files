@@ -46,7 +46,7 @@ class FileController extends Controller
             'comment' => $request->input('comment'),
             'path' => $path,
             'delete_after' => $request->input('delete_after'),
-            'user_id' => \Auth::user()->id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect()->route('files.index');
@@ -93,6 +93,8 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        \Storage::disk('public')->delete($file->path);
+        $file->delete();
+        return redirect()->route('files.index');
     }
 }
