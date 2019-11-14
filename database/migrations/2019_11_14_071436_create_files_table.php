@@ -19,7 +19,7 @@ class CreateFilesTable extends Migration
             $table->string('path');
             $table->text('comment')->nullable();
             $table->string('url')->nullable();
-            $table->date('delete_after');
+            $table->date('delete_after')->nullable();
             $table->integer('view_count')->default(0);
             $table->bigInteger('user_id')->unsigned();
 

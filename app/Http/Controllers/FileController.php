@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\File;
 use Illuminate\Http\Request;
+use Auth;
 
 class FileController extends Controller
 {
@@ -14,7 +15,9 @@ class FileController extends Controller
      */
     public function index()
     {
-        dd(File::all());
+        $count = count(Auth::user()->files);
+        $files = File::all()->sortByDesc('created_at');
+        return view('files.index', compact('count', 'files'));
     }
 
     /**
@@ -56,7 +59,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        return view('files.show', compact('file'));
     }
 
     /**
