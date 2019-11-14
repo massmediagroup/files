@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\File;
+use App\Http\Requests\FileRequest;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -36,12 +37,12 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FileRequest $request)
     {
         if ($request->hasFile('file')) {
             $path = $request->file('file')->store('uploads','public');
         }
-        File::create([
+        $item = File::create([
             'name' => $request->file('file')->getClientOriginalName(),
             'comment' => $request->input('comment'),
             'path' => $path,
@@ -49,7 +50,13 @@ class FileController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect()->route('files.index');
+        if ($item) {
+            return redirect()->route('files.index');
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Помилка пр збереженні.'])
+                ->withInput();
+        }
     }
     /**
      * Display the specified resource.
