@@ -24,3 +24,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('logout', 'LogoutController')->middleware('auth:api');
     });
 });
+
+Route::group(['middleware' => ['auth:api'], 'namespace' => 'Api'], function () {
+    Route::apiResource('files', 'FileController');
+});
