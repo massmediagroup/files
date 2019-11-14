@@ -39,7 +39,7 @@ class FileController extends Controller
     public function store(Request $request)
     {
         if ($request->hasFile('file')) {
-            $path = $request->file('file')->storeAs('', $request->file('file')->getClientOriginalName(), 'public');
+            $path = $request->file('file')->store('uploads','public');
         }
         File::create([
             'name' => $request->file('file')->getClientOriginalName(),
