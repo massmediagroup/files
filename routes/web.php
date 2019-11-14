@@ -11,16 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/show/{id}', 'ShowImageController@show')->name('public.show');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('files', 'FileController')->except(['edit'])->names('files');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
 });
