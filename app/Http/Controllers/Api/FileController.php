@@ -81,6 +81,10 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = File::where('id', $id)->first();
+        \Storage::disk('public')->delete($file->path);
+        $file->links()->delete();
+        $file->delete();
+        return response()->json(['message' => 'Дані видалено'], 204);
     }
 }
