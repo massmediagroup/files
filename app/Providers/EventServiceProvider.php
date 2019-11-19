@@ -15,8 +15,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        'App\Events\FileView' => [
+            'App\Listeners\Counter',
         ],
     ];
 
@@ -28,9 +28,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        Event::listen('FileHasViewed', function ($post) {
-            $post->increment('view_count');
-        });
     }
 }
