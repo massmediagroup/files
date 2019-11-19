@@ -16,8 +16,8 @@ class FileController extends Controller
      */
     public function index()
     {
-        $count = count(Auth::user()->files);
-        $files = File::all()->sortByDesc('created_at');
+        $files = Auth::user()->files->sortByDesc('created_at');
+        $count = count($files);
         return view('files.index', compact('count', 'files'));
     }
 

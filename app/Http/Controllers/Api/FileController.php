@@ -29,7 +29,6 @@ class FileController extends Controller
      */
     public function store(FileRequest $request)
     {
-//        return response()->json($request);
         if ($request->hasFile('file')) {
             $path = $request->file('file')->store('uploads','public');
         }
