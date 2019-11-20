@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\File;
 use App\Http\Requests\FileRequest;
+use App\Services\FileUpload;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -37,11 +38,9 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FileRequest $request)
+    public function store(FileRequest $request, FileUpload $file)
     {
-        if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('uploads','public');
-        }
+        $path = $file->fileUpload($request);
         $item = File::create([
             'name' => $request->file('file')->getClientOriginalName(),
             'comment' => $request->input('comment'),
