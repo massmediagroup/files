@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\File;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FileRequest;
+use App\Services\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,7 +72,7 @@ class FileController extends Controller
     public function update(Request $request, $id)
     {
         $file = File::where('id', $id)->first();
-        $item = $file->update([
+        $file->update([
             'url' => route('public.show', $file->id)
         ]);
         return response()->json($file->url, 200);

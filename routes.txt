@@ -2,11 +2,12 @@
 | Domain | Method    | URI                                     | Name                              | Action                                                                    | Middleware   |
 +--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+--------------+
 |        | GET|HEAD  | /                                       | dashboard                         | App\Http\Controllers\DashboardController@index                            | web,auth     |
-|        | POST      | api/files                               | files.store                       | App\Http\Controllers\Api\FileController@store                             | api,auth:api |
-|        | GET|HEAD  | api/files                               | files.index                       | App\Http\Controllers\Api\FileController@index                             | api,auth:api |
-|        | PUT|PATCH | api/files/{file}                        | files.update                      | App\Http\Controllers\Api\FileController@update                            | api,auth:api |
-|        | DELETE    | api/files/{file}                        | files.destroy                     | App\Http\Controllers\Api\FileController@destroy                           | api,auth:api |
-|        | GET|HEAD  | api/files/{file}                        | files.show                        | App\Http\Controllers\Api\FileController@show                              | api,auth:api |
+|        | GET|HEAD  | api/files                               | api.files.index                   | App\Http\Controllers\Api\FileController@index                             | api,auth:api |
+|        | POST      | api/files                               | api.files.store                   | App\Http\Controllers\Api\FileController@store                             | api,auth:api |
+|        | DELETE    | api/files/{file}                        | api.files.destroy                 | App\Http\Controllers\Api\FileController@destroy                           | api,auth:api |
+|        | GET|HEAD  | api/files/{file}                        | api.files.show                    | App\Http\Controllers\Api\FileController@show                              | api,auth:api |
+|        | PUT|PATCH | api/files/{file}                        | api.files.update                  | App\Http\Controllers\Api\FileController@update                            | api,auth:api |
+|        | GET|HEAD  | api/generate/{idFile}                   |                                   | App\Http\Controllers\Api\LinkController@generate                          | api,auth:api |
 |        | POST      | api/login                               |                                   | App\Http\Controllers\Api\Auth\LoginController                             | api          |
 |        | POST      | api/logout                              |                                   | App\Http\Controllers\Api\Auth\LogoutController                            | api,auth:api |
 |        | POST      | api/register                            |                                   | App\Http\Controllers\Api\Auth\RegisterController                          | api          |
@@ -14,9 +15,9 @@
 |        | POST      | files                                   | files.store                       | App\Http\Controllers\FileController@store                                 | web,auth     |
 |        | GET|HEAD  | files                                   | files.index                       | App\Http\Controllers\FileController@index                                 | web,auth     |
 |        | GET|HEAD  | files/create                            | files.create                      | App\Http\Controllers\FileController@create                                | web,auth     |
-|        | DELETE    | files/{file}                            | files.destroy                     | App\Http\Controllers\FileController@destroy                               | web,auth     |
-|        | PUT|PATCH | files/{file}                            | files.update                      | App\Http\Controllers\FileController@update                                | web,auth     |
 |        | GET|HEAD  | files/{file}                            | files.show                        | App\Http\Controllers\FileController@show                                  | web,auth     |
+|        | PUT|PATCH | files/{file}                            | files.update                      | App\Http\Controllers\FileController@update                                | web,auth     |
+|        | DELETE    | files/{file}                            | files.destroy                     | App\Http\Controllers\FileController@destroy                               | web,auth     |
 |        | GET|HEAD  | generate/{idFile}                       | link.generate                     | App\Http\Controllers\LinkController@generate                              | web,auth     |
 |        | POST      | login                                   |                                   | App\Http\Controllers\Auth\LoginController@login                           | web,guest    |
 |        | GET|HEAD  | login                                   | login                             | App\Http\Controllers\Auth\LoginController@showLoginForm                   | web,guest    |
